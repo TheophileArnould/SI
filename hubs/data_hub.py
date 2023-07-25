@@ -39,6 +39,11 @@ class Data:
         data_features = data_arr[:,0:-1]
         data_labels = data_arr[:,-1]
 
+        data_labels = data_labels.reshape(-1,1)
+
+        ##lets check the dimension of the array
+        print(f'Dimension : {data_features.shape}')
+
         #lets label encode any text in the data
 
         #lets create a boolean array with the size of the columns of the array
@@ -56,6 +61,12 @@ class Data:
         scaler = StandardScaler()#Create an object of this library in particular
         
         data_features_normalize = scaler.fit_transform(data_features)
-        data_labels_normalize = scaler.fit_transform(data_labels.reshape(-1,1))
+        data_labels_normalize = scaler.fit_transform(data_labels)
 
-        print(data_features_normalize)
+        print(data_labels_normalize)
+
+        #lets split the data into train and test
+
+        train_feateures, test_feateures, train_labels, test_labels = tts(data_features_normalize, data_labels_normalize, test_size=0.1)
+
+        return train_feateures, test_feateures, train_labels, test_labels
