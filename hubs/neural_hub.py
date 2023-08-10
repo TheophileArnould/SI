@@ -1,5 +1,5 @@
 from hubs.data_hub import Data
-from models.perceptron import Perceptron
+from hubs.models.perceptron import Perceptron
 
 
 class Neural:
@@ -16,7 +16,7 @@ class Neural:
             print('Running Perceptron Model')
             ##Code for perceptron model
             P = Perceptron()
-            P.run(train_feateures, test_feateures, train_labels, test_labels)
+            P.run(train_feateures, test_feateures, train_labels, test_labels,10)
         
         elif model == 'ffm':
             print('Running Feed Forward Model')

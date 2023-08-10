@@ -42,7 +42,7 @@ class Data:
         data_labels = data_labels.reshape(-1,1)
 
         ##lets check the dimension of the array
-        print(f'Dimension : {data_features.shape}')
+        #print(f'Dimension : {data_features.shape}')
 
         #lets label encode any text in the data
 
@@ -63,7 +63,6 @@ class Data:
         data_features_normalize = scaler.fit_transform(data_features)
         data_labels_normalize = scaler.fit_transform(data_labels)
 
-        print(data_labels_normalize)
 
         #lets split the data into train and test
 
