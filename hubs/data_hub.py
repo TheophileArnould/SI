@@ -21,7 +21,7 @@ class Data:
     def __init__(self):
         pass
 
-    def data_process(self, file, test_split, norm):
+    def data_process(self, file, test_split, norm,neurons):
         ##Lets define the absolute path for this folder
         data_dir = os.path.abspath(os.path.join(os.path.dirname(__file__),'..','data'))
 
@@ -50,10 +50,14 @@ class Data:
 
 
         ##Lets split the data into features and labels
-        data_features = data_arr[:,0:-1]
-        data_labels = data_arr[:, -1]
+        data_features = data_arr[:,0:-neurons]
+        data_labels = data_arr[:, -neurons:]
 
-        data_labels = data_labels.reshape(-1,1)
+        print(f'Features: {data_features}')
+        print(f'Labels: {data_labels}')
+
+        if neurons == 1:
+            data_labels = data_labels.reshape(-1,1)
 
         ##lets check the dimensions of the arrays
         #print(f'Dimensions: {data_labels.shape}')
@@ -77,8 +81,6 @@ class Data:
             test_labels = 0
             train_features = data_features_norm
             train_labels = data_labels_norm
-            print(f'Features: {train_features}')
-            print(f'labels: {train_labels}')
 
 
         return train_features, test_features, train_labels, test_labels
